@@ -22,7 +22,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async(data) => {
-    console.log(data);
+
     const imgdata = new FormData();
     const image = data.image[0];
     imgdata.append("file", image);
@@ -55,7 +55,7 @@ const Register = () => {
         const loggedUser = res.user;
         if(loggedUser.email){
             axiosSecure.post('/users', userData).then((res)=>{
-              console.log(res.data);
+             
               if(res.data.insertedId){
                 Swal.fire({
                   position: "top-end",

@@ -4,7 +4,6 @@ import { Chart } from "react-google-charts";
 
 const Dashboard = () => {
   const [dashboardData, isLoading] = useGetDashboardData();
-  console.log(dashboardData?.monthlyData);
   if (isLoading) {
     return <Loading />;
   }

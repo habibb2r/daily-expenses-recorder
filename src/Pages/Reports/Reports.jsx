@@ -23,7 +23,7 @@ const Reports = () => {
         return `${day}th`;
     }
   };
-  console.log(dailyReports);
+
   const formattedDate = `${getDayWithSuffix(day)} ${month}, ${year}`;
 
   return (

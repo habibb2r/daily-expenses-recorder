@@ -27,7 +27,7 @@ const Accounting = () => {
   const modalForm = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+ 
     const entryData = {
         date : data.date,
         accountHead : data.accountHead,
@@ -38,7 +38,6 @@ const Accounting = () => {
 
     }
     axiosSecure.post('/accounting', entryData).then((res)=>{
-        console.log(res.data);
         if(res.data.insertedId){
             reLoadProfile();
             reset();

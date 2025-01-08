@@ -21,9 +21,9 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async(data) => {
-    console.log(data)
+   
     await axiosSecure.post('/authenticateUser', data).then((res)=>{
-      console.log(res.data);
+      
       if(res.data.email){
           signin(res.data.email, data.password).then((res)=>{
             const user = res.user;
@@ -41,7 +41,7 @@ const Login = () => {
       }
     })
   };
-  console.log(errors);
+  
   return (
     <div className="flex justify-center items-center w-full h-full">
       <div className="flex flex-col justify-start items-center gap-3 px-[2%] py-[3%] bg-[#f4f9fc] mt-[5%] rounded-md shadow-md border-t-4 border-[#2696c5]">
