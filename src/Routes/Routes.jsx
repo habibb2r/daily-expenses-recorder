@@ -3,6 +3,7 @@ import Login from "../Pages/Accounts/Login";
 import Main from "../Layouts/Main/Main";
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/Accounts/Register";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -11,7 +12,7 @@ export const router = createBrowserRouter([
       children:[
         {
             path: "/",
-            element: <Home></Home>
+            element: <ProtectedRoutes><Home></Home></ProtectedRoutes>
         },
         {
             path: "/login",

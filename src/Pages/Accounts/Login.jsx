@@ -1,20 +1,46 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-
+    const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
+    const { signin} = useAuth();
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
       };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async(data) => {
+    console.log(data)
+    await axiosSecure.post('/authenticateUser', data).then((res)=>{
+      console.log(res.data);
+      if(res.data.email){
+          signin(res.data.email, data.password).then((res)=>{
+            const user = res.user;
+            if(user){
+              Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Login Successful',
+                timer: 1500,
+                showConfirmButton: false
+              });
+              navigate('/')
+            }
+          })
+      }
+    })
+  };
   console.log(errors);
   return (
     <div className="flex justify-center items-center w-full h-full">
@@ -37,7 +63,7 @@ const Login = () => {
               className="input input-bordered w-full max-w-md"
               type="text"
               placeholder="Enter Employee ID Here"
-              {...register("employerId", { required: true })}
+              {...register("employeeId", { required: true })}
             />
           </label>
           
