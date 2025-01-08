@@ -1,6 +1,6 @@
 
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -13,6 +13,7 @@ const Register = () => {
   const hosting_url = img_hosting;
   const { createUser} = useAuth();
   const axiosSecure = useAxiosSecure()
+  const navigate = useNavigate()
  
   const {
     register,
@@ -39,6 +40,7 @@ const Register = () => {
         const cloudData = await res.json();
         imgURL = cloudData.url;
       }
+      const defaultImg = 'https://res.cloudinary.com/dzdvpsejg/image/upload/v1736371889/waberwraeacfih0ua394.png'
       const userData = {
         fullName: data.fullName,
         email: data.email,
@@ -47,7 +49,7 @@ const Register = () => {
         position: data.position,
         gender: data.gender,
         dob: data.dob,
-        image: imgURL || '',
+        image: imgURL || defaultImg,
       }
       createUser(data.email, data.password).then((res)=>{
         const loggedUser = res.user;
@@ -62,6 +64,7 @@ const Register = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
+                navigate('/')
                 reset();
               }
             })

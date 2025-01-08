@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../Pages/Accounts/Login";
 import Main from "../Layouts/Main/Main";
-import Home from "../Pages/Dashboard/Dashboard";
 import Register from "../Pages/Accounts/Register";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Accounting from "../Pages/Accounting/Accounting";
 import Reports from "../Pages/Reports/Reports";
 import Profile from "../Pages/Profile/Profile";
+import RedirectRouting from "./RedirectRouting";
 
 export const router = createBrowserRouter([
     {
@@ -32,11 +32,11 @@ export const router = createBrowserRouter([
         },
         {
             path: "/login",
-            element: <Login></Login>
+            element: <RedirectRouting><Login></Login></RedirectRouting>
         },
         {
             path: "/register",
-            element: <Register></Register>
+            element: <RedirectRouting><Register></Register></RedirectRouting>
         }
       ]
     },

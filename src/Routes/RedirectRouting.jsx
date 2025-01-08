@@ -3,7 +3,7 @@ import useAuth from '../Hooks/useAuth';
 import { Navigate, useLocation } from 'react-router-dom';
 import Loading from '../Reuseable/Loading';
 
-const ProtectedRoutes = ({children}) => {
+const RedirectRouting = ({children}) => {
     const location = useLocation()
     const { user, loading} = useAuth()
 
@@ -12,9 +12,9 @@ const ProtectedRoutes = ({children}) => {
     }
 
     if(user){
-        return children
+        return <Navigate to='/' state={{from: location}} replace></Navigate>
     }
-    return <Navigate to='/login' state={{from: location}} replace></Navigate>
+    return children
 };
 
-export default ProtectedRoutes;
+export default RedirectRouting;

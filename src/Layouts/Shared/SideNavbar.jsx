@@ -3,10 +3,12 @@ import { FiEdit } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const SideNavbar = () => {
+    const {user} = useAuth()
   return (
-    <div className="w-[250px] bg-[#e4f1f7] h-screen fixed top-[12%] left-0">
+    <div className={`${user? "block" : "hidden" } w-[250px] bg-[#e4f1f7] h-screen fixed top-[12%] left-0`}>
       <div className="px-[3%] py-[4%]">
         <h1 className="font-semibold text-default text-2xl">Accounting</h1>
         <div className="flex flex-col justify-start gap-3 mt-5">

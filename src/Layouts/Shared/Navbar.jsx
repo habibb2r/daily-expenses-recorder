@@ -4,6 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import useGetProfile from "../../Hooks/useGetProfile";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import Loading from "../../Reuseable/Loading";
 
 const Navbar = () => {
     const [opendropdown, setDropDown] = useState(false)
@@ -31,7 +32,7 @@ const Navbar = () => {
       </div>
       <div>
         {user ? (
-          loadProfile ? <div className="loading loading-spinner loading-lg"></div> : <div className="flex justify-end items-center gap-4">
+          loadProfile ? <Loading /> : <div className="flex justify-end items-center gap-4">
           <div className="flex flex-col items-end justify-end gap-2">
             <h1 className="text-xl font-semibold">{profile?.fullName}</h1>
             <h1 className="text-sm">{profile?.position}</h1>
