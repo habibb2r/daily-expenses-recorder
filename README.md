@@ -23,6 +23,15 @@ The user interface and experience design for this project are based on the Figma
 You can view the live demo of the project here: 🔗🚀💡  
 [Live Link](https://jrswe-task-habibb2r.pages.dev)
 
+## Server Repository
+ ```bash
+https://github.com/habibb2r/daily-expence-server
+```
+## Server Link
+ ```bash
+https://daily-expence-server.vercel.app/
+```
+
 ## Assessment Criteria 💡🌟🔧
 The implementation adheres to the following assessment criteria: 🔄📚🔐
 
