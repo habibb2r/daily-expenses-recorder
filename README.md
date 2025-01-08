@@ -23,14 +23,14 @@ The user interface and experience design for this project are based on the Figma
 You can view the live demo of the project here: 🔗🚀💡  
 [Live Link](https://jrswe-task-habibb2r.pages.dev)
 
-Assessment Criteria 💡🌟🔧
+## Assessment Criteria 💡🌟🔧
 The implementation adheres to the following assessment criteria: 🔄📚🔐
 
-User Experience: The application ensures an intuitive and user-friendly experience.
-User Interface Design: Adheres to the Figma design, ensuring consistency and visual appeal.
-Functionality: A basic working prototype with user registration, login, and transaction recording features.
-Code Quality: The codebase follows clean, readable, and organized coding practices.
+- **User Experience:** The application ensures an intuitive and user-friendly experience.
+- **User Interface Design:** Adheres to the Figma design, ensuring consistency and visual appeal.
+- **Functionality:** A basic working prototype with user registration, login, and transaction recording features.
+- **Code Quality:** The codebase follows clean, readable, and organized coding practices.
 
 
-Developed by: Md Habib Ullah Sajib 🔧🚀🌟
-Contact: [HABIBB2R](mailto:habibhk127@gmail.com)
+**Developed by: Md Habib Ullah Sajib 🔧🚀🌟**
+Contact: **[HABIBB2R](mailto:habibhk127@gmail.com)**
