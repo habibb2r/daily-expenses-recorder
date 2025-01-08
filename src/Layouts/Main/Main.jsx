@@ -8,7 +8,7 @@ const Main = () => {
         <div>
             <Navbar></Navbar>
             <SideNavbar></SideNavbar>
-            <div className="ml-[250px]">
+            <div className="ml-[250px] px-[2%] py-[2%]">
             <Outlet></Outlet>
             </div>
 

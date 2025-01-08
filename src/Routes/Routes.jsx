@@ -7,6 +7,7 @@ import ProtectedRoutes from "./ProtectedRoutes";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Accounting from "../Pages/Accounting/Accounting";
 import Reports from "../Pages/Reports/Reports";
+import Profile from "../Pages/Profile/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
         {
           path: '/reports',
           element: <ProtectedRoutes><Reports></Reports></ProtectedRoutes>
+        },
+        {
+          path: '/profile',
+          element: <ProtectedRoutes><Profile></Profile></ProtectedRoutes>
         },
         {
             path: "/login",

@@ -1,12 +1,13 @@
 
 import useAuth from '../Hooks/useAuth';
 import { Navigate } from 'react-router-dom';
+import Loading from '../Reuseable/Loading';
 
 const ProtectedRoutes = ({children}) => {
     const { user, loading} = useAuth()
 
     if(loading){
-        return <div className="loading loading-spinner loading-lg mx-auto"></div>
+        return <Loading></Loading>
     }
 
     if(user){
