@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+      };
   const {
     register,
     handleSubmit,
@@ -34,17 +40,32 @@ const Login = () => {
               {...register("employerId", { required: true })}
             />
           </label>
+          
           <label className="form-control w-full max-w-md">
-            <div className="label">
+          <div className="label">
               <span className="label-text font-semibold">Password</span>
             </div>
-            <input
-              className="input input-bordered w-full max-w-md"
-              type="text"
-              placeholder="Enter Password Here"
-              {...register("password", { required: true, min: 6 })}
-            />
+          <div className="relative w-full max-w-md">
+          
+              <input
+                className="input input-bordered  w-full pr-10"
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter Password Here"
+                {...register("password", {
+                  required: true,
+                  minLength: 4,
+                })}
+              />
+              <button
+                type="button"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                onClick={togglePasswordVisibility}
+              >
+                {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+              </button>
+            </div>
           </label>
+          
 
           <div className="w-full">
             <input

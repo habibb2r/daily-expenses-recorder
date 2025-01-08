@@ -1,14 +1,79 @@
 
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+const img_hosting = import.meta.env.VITE_img_host;
+const img_upload_preset = import.meta.env.VITE_preset;
+const img_cloud_name = import.meta.env.VITE_cloud;
+
 
 const Register = () => {
+  const hosting_url = img_hosting;
+  const { createUser} = useAuth();
+  const axiosSecure = useAxiosSecure()
+ 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async(data) => {
+    console.log(data);
+    const imgdata = new FormData();
+    const image = data.image[0];
+    imgdata.append("file", image);
+    imgdata.append("upload_preset", img_upload_preset);
+    imgdata.append("cloud_name", img_cloud_name);
+    let imgURL =''
+    try{
+      if (image === null) {
+        imgURL = null
+      }else{
+        const res = await fetch(hosting_url, {
+          method: "POST",
+          body: imgdata,
+        });
+        const cloudData = await res.json();
+        imgURL = cloudData.url;
+      }
+      const userData = {
+        fullName: data.fullName,
+        email: data.email,
+        employeeId: data.employeeId,
+        password: data.password,
+        position: data.position,
+        gender: data.gender,
+        dob: data.dob,
+        image: imgURL || '',
+      }
+      createUser(data.email, data.password).then((res)=>{
+        const loggedUser = res.user;
+        if(loggedUser.email){
+            axiosSecure.post('/users', userData).then((res)=>{
+              console.log(res.data);
+              if(res.data.insertedId){
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Signed up successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                reset();
+              }
+            })
+        }
+      })
+
+
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
   console.log(errors);
 
   return (
@@ -110,12 +175,22 @@ const Register = () => {
               {...register("password", { required: true, minLength: 6 })}
             />
           </label>
+          <label className="form-control w-full">
+            <div className="label">
+              <span className="label-text font-semibold">Profile Picture</span>
+            </div>
+            <input
+              type="file"
+              className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+              {...register("image")}
+            />
+          </label>
 
           <div className="w-full">
             <input
               className="px-3 py-2 rounded-xl bg-[#2397c8] text-white w-full"
               type="submit"
-              
+              value="Register"
             />
           </div>
         </form>
